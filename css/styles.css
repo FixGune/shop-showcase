@@ -1,0 +1,28 @@
+/* Карточка товара в карусели */
+.carousel-card {
+    flex: 0 0 25%; /* 4 карточки на экран = 100% / 4 = 25% */
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.carousel-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.carousel-card .product-info {
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    margin-top: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+    .carousel-card {
+        flex: 0 0 100%; /* 1 карточка на экран */
+    }
+}

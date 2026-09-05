@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Как подобрать? — Kruzheva</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Шапка -->
+    <header class="bg-white shadow">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold">Kruzheva</a>
+            <ul class="flex space-x-6">
+                <li><a href="index.html" class="hover:text-pink-500" data-i18n="nav.home">Главная</a></li>
+                <li><a href="catalog.html" class="hover:text-pink-500" data-i18n="nav.catalog">Каталог</a></li>
+                <li><a href="sizing.html" class="hover:text-pink-500" data-i18n="nav.sizing">Как подобрать?</a></li>
+                <li><a href="about.html" class="hover:text-pink-500" data-i18n="nav.about">О нас</a></li>
+            </ul>
+            <select id="language-switcher" class="border rounded px-2 py-1">
+                <option value="ru">RU</option>
+                <option value="kk">KK</option>
+                <option value="en">EN</option>
+            </select>
+        </nav>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8 text-center" data-i18n="sizing.title">Как подобрать размер?</h1>
+        
+        <!-- Калькулятор -->
+        <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-2xl font-bold mb-6 text-center" data-i18n="sizing.calculator">Калькулятор размера</h2>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block font-bold mb-2" data-i18n="sizing.underbust">Обхват под грудью (см)</label>
+                    <input type="number" id="underbust" class="w-full border rounded-full px-6 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500" placeholder="70-120">
+                </div>
+                
+                <div>
+                    <label class="block font-bold mb-2" data-i18n="sizing.bust">Обхват по груди (см)</label>
+                    <input type="number" id="bust" class="w-full border rounded-full px-6 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500" placeholder="80-130">
+                </div>
+                
+                <button onclick="calculateSize()" class="w-full bg-pink-500 text-white rounded-full px-6 py-3 hover:bg-pink-600 transition font-bold" data-i18n="sizing.calculate">
+                    Рассчитать
+                </button>
+                
+                <div id="result" class="hidden mt-6 p-4 bg-pink-50 rounded-lg text-center">
+                    <p class="text-lg font-bold" data-i18n="sizing.yoursize">Ваш размер:</p>
+                    <p id="size-result" class="text-3xl font-bold text-pink-500"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-4" data-i18n="footer.contacts">Контакты</h3>
+                <p>📞 +7 777 123 45 67</p>
+                <p>📧 shop@example.com</p>
+                <div class="mt-4 space-x-4">
+                    <a href="https://wa.me/77771234567" class="hover:text-pink-300">WhatsApp</a>
+                    <a href="https://t.me/yourshop" class="hover:text-pink-300">Telegram</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4" data-i18n="footer.howtoget">Как добраться</h3>
+                <p data-i18n="footer.address">Бауыржана Момышулы 10, Семей 071400</p>
+                <a href="https://maps.app.goo.gl/5TeoKkSuSxAgJ6NA6" class="text-pink-300 hover:underline" data-i18n="footer.maplink">Показать на карте</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/sizing.js"></script>
+</body>
+</html>

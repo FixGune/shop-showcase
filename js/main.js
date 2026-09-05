@@ -2,8 +2,77 @@
 let products = [];
 let currentPage = 1;
 let itemsPerPage = 8;
-
 let currentLang = 'ru';
+let saleProducts = [];
+let carouselIndex = 0;
+
+// === Загрузка товаров для карусели (только акционные) ===
+async function loadCarouselProducts() {
+    try {
+        const response = await fetch('data/products.json');
+        const allProducts = await response.json();
+        
+        // Фильтруем только товары со скидкой
+        saleProducts = allProducts.filter(product => product.sale === true);
+        
+        renderCarousel();
+    } catch (error) {
+        console.error('Ошибка загрузки товаров для карусели:', error);
+    }
+}
+
+// === Отрисовка карусели ===
+function renderCarousel() {
+    const track = document.getElementById('carousel-track');
+    if (!track || saleProducts.length === 0) return;
+
+    track.innerHTML = saleProducts.map(product => `
+        <div class="carousel-card">
+            <img src="${product.image}" alt="${product.name}">
+            <div class="product-info">
+                <h3 class="font-bold text-lg">${product.name}</h3>
+                <p class="text-pink-500 font-bold">${product.price} ₸</p>
+                <span class="bg-red-500 text-white text-xs px-2 py-1 rounded">Акция</span>
+            </div>
+        </div>
+    `).join('');
+
+    updateCarousel();
+}
+
+// === Обновление позиции карусели ===
+function updateCarousel() {
+    const track = document.getElementById('carousel-track');
+    if (!track) return;
+
+    const cardWidth = track.querySelector('.carousel-card').offsetWidth;
+    const offset = -carouselIndex * cardWidth;
+    track.style.transform = `translateX(${offset}px)`;
+}
+
+// === Обработчики кнопок ===
+document.getElementById('carousel-prev')?.addEventListener('click', () => {
+    if (carouselIndex > 0) {
+        carouselIndex--;
+        updateCarousel();
+    }
+});
+
+document.getElementById('carousel-next')?.addEventListener('click', () => {
+    const track = document.getElementById('carousel-track');
+    if (!track) return;
+
+    const cards = track.querySelectorAll('.carousel-card').length;
+    const visibleCards = 4; // Показываем 4 карточки
+
+    if (carouselIndex < cards - visibleCards) {
+        carouselIndex++;
+        updateCarousel();
+    }
+});
+
+// === Запуск карусели ===
+loadCarouselProducts();
 
 // === Загрузка переводов ===
 async function loadTranslations(lang) {

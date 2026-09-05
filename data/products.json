@@ -13,7 +13,7 @@
     "price": 8000,
     "image": "assets/images/blouse1.jpg",
     "category": "Блузки",
-    "sale": false
+    "sale": true
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "price": 8000,
     "image": "assets/images/blouse1.jpg",
     "category": "Блузки",
-    "sale": false
+    "sale": true
   },
   {
     "id": 4,
@@ -29,7 +29,7 @@
     "price": 8000,
     "image": "assets/images/blouse1.jpg",
     "category": "Блузки",
-    "sale": false
+    "sale": true
   },
   {
     "id": 5,
