@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог — Kruzheva</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Шапка (такая же, как на index.html) -->
+    <header class="bg-white shadow">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold">Kruzheva</a>
+            <ul class="flex space-x-6">
+                <li><a href="index.html" class="hover:text-pink-500">Главная</a></li>
+                <li><a href="catalog.html" class="hover:text-pink-500">Каталог</a></li>
+                <li><a href="about.html" class="hover:text-pink-500">О нас</a></li>
+            </ul>
+            <select id="language-switcher" class="border rounded px-2 py-1">
+                <option value="ru">RU</option>
+                <option value="kk">KK</option>
+                <option value="en">EN</option>
+            </select>
+        </nav>
+    </header>
+
+    <!-- Каталог -->
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-6" data-i18n="catalog.title">Каталог товаров</h1>
+        
+        <!-- Переключатель количества товаров -->
+        <div class="mb-6 flex items-center space-x-4">
+            <span data-i18n="catalog.show">Показать:</span>
+            <button class="pagination-btn px-4 py-2 border rounded" data-limit="8">8</button>
+            <button class="pagination-btn px-4 py-2 border rounded" data-limit="16">16</button>
+            <button class="pagination-btn px-4 py-2 border rounded" data-limit="32">32</button>
+        </div>
+
+        <!-- Сетка товаров -->
+        <div id="products-grid" class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <!-- Товары будут вставлены через JS -->
+        </div>
+
+        <!-- Пагинация -->
+        <div id="pagination" class="mt-8 flex justify-center space-x-2">
+            <!-- Кнопки страниц -->
+        </div>
+    </main>
+
+    <!-- Подвал (такой же, как на index.html) -->
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-4" data-i18n="footer.contacts">Контакты</h3>
+                <p>📞 +7 777 123 45 67</p>
+                <p>📧 shop@example.com</p>
+                <div class="mt-4 space-x-4">
+                    <a href="https://wa.me/77771234567" class="hover:text-pink-300">WhatsApp</a>
+                    <a href="https://t.me/yourshop" class="hover:text-pink-300">Telegram</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4" data-i18n="footer.howtoget">Как добраться</h3>
+                <p>г. Семей, ул. Примерная, 10</p>
+                <a href="https://maps.google.com" class="text-pink-300 hover:underline">Показать на карте</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
