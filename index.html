@@ -12,28 +12,28 @@
 <body class="bg-gray-50 text-gray-800">
     <!-- Шапка -->
     <header class="bg-white shadow">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold">Kruzheva</a>
-            <ul class="flex space-x-6">
-                <li><a href="index.html" class="hover:text-pink-500">Главная</a></li>
-                <li><a href="catalog.html" class="hover:text-pink-500">Каталог</a></li>
-                <li><a href="about.html" class="hover:text-pink-500">О нас</a></li>
-            </ul>
-            <!-- Переключатель языка -->
-            <select id="language-switcher" class="border rounded px-2 py-1">
-                <option value="ru">RU</option>
-                <option value="kk">KK</option>
-                <option value="en">EN</option>
-            </select>
-        </nav>
-    </header>
+    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="index.html" class="text-2xl font-bold">Kruzheva</a>
+        <ul class="flex space-x-6">
+            <li><a href="index.html" class="hover:text-pink-500" data-i18n="nav.home">Главная</a></li>
+            <li><a href="catalog.html" class="hover:text-pink-500" data-i18n="nav.catalog">Каталог</a></li>
+            <li><a href="about.html" class="hover:text-pink-500" data-i18n="nav.about">О нас</a></li>
+        </ul>
+        <select id="language-switcher" class="border rounded px-2 py-1">
+            <option value="ru">RU</option>
+            <option value="kk">KK</option>
+            <option value="en">EN</option>
+        </select>
+    </nav>
+</header>
 
     <!-- Герой-секция (акции) -->
     <section class="bg-pink-100 py-16">
         <div class="container mx-auto px-4 text-center">
             <h1 class="text-4xl font-bold mb-4" data-i18n="hero.title">Акции и новинки</h1>
             <p class="text-lg mb-8" data-i18n="hero.subtitle">Лучшие предложения этой недели</p>
-            <a href="catalog.html" class="bg-pink-500 text-white px-6 py-3 rounded hover:bg-pink-600">Смотреть каталог</a>
+            <a href="catalog.html" class="bg-pink-500 text-white px-6 py-3 rounded hover:bg-pink-600" 
+            data-i18n="hero.button">Смотреть каталог</a>
         </div>
     </section>
 
@@ -51,8 +51,9 @@
             </div>
             <div>
                 <h3 class="text-xl font-bold mb-4" data-i18n="footer.howtoget">Как добраться</h3>
-                <p>г. Семей, ул. Примерная, 10</p>
-                <a href="https://maps.google.com" class="text-pink-300 hover:underline">Показать на карте</a>
+                <p data-i18n="footer.address">Бауыржана Момышулы 10, Семей 071400</p>
+                <a href="https://maps.app.goo.gl/5TeoKkSuSxAgJ6NA6" 
+                class="text-pink-300 hover:underline" data-i18n="footer.maplink">Показать на карте</a>
             </div>
         </div>
     </footer>

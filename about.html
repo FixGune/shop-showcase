@@ -1,7 +1,111 @@
-<!-- Форма -->
-<form action="https://formspree.io/f/myeypvvn" method="POST" class="max-w-md mx-auto space-y-4">
-    <input type="text" name="name" placeholder="Ваше имя" required class="w-full border rounded px-4 py-2">
-    <input type="email" name="email" placeholder="Ваш email" required class="w-full border rounded px-4 py-2">
-    <textarea name="message" placeholder="Сообщение" rows="4" required class="w-full border rounded px-4 py-2"></textarea>
-    <button type="submit" class="bg-pink-500 text-white px-6 py-2 rounded hover:bg-pink-600">Отправить</button>
-</form>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас — Kruzheva</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Шапка (одинаковая на всех страницах) -->
+    <header class="bg-white shadow">
+    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="index.html" class="text-2xl font-bold">Kruzheva</a>
+        <ul class="flex space-x-6">
+            <li><a href="index.html" class="hover:text-pink-500" data-i18n="nav.home">Главная</a></li>
+            <li><a href="catalog.html" class="hover:text-pink-500" data-i18n="nav.catalog">Каталог</a></li>
+            <li><a href="about.html" class="hover:text-pink-500" data-i18n="nav.about">О нас</a></li>
+        </ul>
+        <select id="language-switcher" class="border rounded px-2 py-1">
+            <option value="ru">RU</option>
+            <option value="kk">KK</option>
+            <option value="en">EN</option>
+        </select>
+        </nav>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8 text-center" data-i18n="about.title">О нас</h1>
+        
+        <!-- Описание + фото -->
+        <div class="grid md:grid-cols-2 gap-8 items-center mb-12">
+            <div>
+                <p class="text-lg leading-relaxed" data-i18n="about.description">
+                    Добро пожаловать в Kruzheva! Мы — магазин стильной одежды в городе Семей...
+                </p>
+            </div>
+            <div>
+                <img src="assets/images/about.jpg" alt="Наш магазин" class="rounded-lg shadow-lg w-full h-96 object-cover">
+            </div>
+        </div>
+
+        <!-- Форма обратной связи -->
+        <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-2xl font-bold mb-6 text-center" data-i18n="contact.title">Обратная связь</h2>
+            
+            <form id="contact-form" action="https://formspree.io/f/myeypvvn" method="POST" class="space-y-4">
+                <input 
+                    type="text" 
+                    name="name" 
+                    placeholder="Ваше имя" 
+                    required 
+                    class="w-full border border-gray-300 rounded-full px-6 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                    data-i18n-placeholder="contact.name"
+                >
+                <input 
+                    type="email" 
+                    name="email" 
+                    placeholder="Ваш email" 
+                    required 
+                    class="w-full border border-gray-300 rounded-full px-6 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                    data-i18n-placeholder="contact.email"
+                >
+                <textarea 
+                    name="message" 
+                    placeholder="Сообщение" 
+                    rows="4" 
+                    required 
+                    class="w-full border border-gray-300 rounded-2xl px-6 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500 resize-none"
+                    data-i18n-placeholder="contact.message"
+                ></textarea>
+                <button 
+                    type="submit" 
+                    class="w-full bg-pink-500 text-white rounded-full px-6 py-3 hover:bg-pink-600 transition font-bold"
+                    data-i18n="contact.button"
+                >
+                    Отправить
+                </button>
+            </form>
+            
+            <!-- Сообщение после отправки -->
+            <div id="thank-you-message" class="hidden text-center mt-4">
+                <p class="text-green-600 font-bold" data-i18n="contact.thanks">Спасибо что отправили обратную связь</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал (одинаковый на всех страницах) -->
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-4" data-i18n="footer.contacts">Контакты</h3>
+                <p>📞 +7 777 123 45 67</p>
+                <p>📧 shop@example.com</p>
+                <div class="mt-4 space-x-4">
+                    <a href="https://wa.me/77073332180" class="hover:text-pink-300">WhatsApp</a>
+                    <a href="https://t.me/yourshop" class="hover:text-pink-300">Telegram</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4" data-i18n="footer.howtoget">Как добраться</h3>
+                <p data-i18n="footer.address">Бауыржана Момышулы 10, Семей 071400</p>
+                <a href="https://maps.app.goo.gl/5TeoKkSuSxAgJ6NA6" class="text-pink-300 hover:underline" data-i18n="footer.maplink">Показать на карте</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

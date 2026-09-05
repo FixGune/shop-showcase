@@ -50,6 +50,68 @@ async function loadProducts() {
     }
 }
 
+
+// === Загрузка переводов (обновлённая версия) ===
+async function loadTranslations(lang) {
+    try {
+        const response = await fetch(`data/translations/${lang}.json`);
+        const translations = await response.json();
+        
+        // Подстановка текста по data-i18n
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            if (translations[key]) {
+                el.textContent = translations[key];
+            }
+        });
+        
+        // Подстановка placeholder'ов по data-i18n-placeholder
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.dataset.i18nPlaceholder;
+            if (translations[key]) {
+                el.placeholder = translations[key];
+            }
+        });
+    } catch (error) {
+        console.error('Ошибка загрузки переводов:', error);
+    }
+}
+
+
+// === Обработка формы обратной связи ===
+const contactForm = document.getElementById('contact-form');
+const thankYouMessage = document.getElementById('thank-you-message');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Останавливаем стандартную отправку
+        
+        const formData = new FormData(contactForm);
+        
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // Скрываем форму, показываем сообщение
+                contactForm.classList.add('hidden');
+                thankYouMessage.classList.remove('hidden');
+            } else {
+                alert('Ошибка отправки. Попробуйте позже.');
+            }
+        } catch (error) {
+            console.error('Ошибка:', error);
+            alert('Ошибка отправки. Попробуйте позже.');
+        }
+    });
+}
+
+
 // === Отрисовка товаров ===
 function renderProducts() {
     const grid = document.getElementById('products-grid');

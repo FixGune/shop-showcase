@@ -1,8 +1,22 @@
 {
   "hero.title": "Promotions & New Arrivals",
   "hero.subtitle": "Best deals this week",
+  "hero.button": "View Catalog",
+  "nav.home": "Home",
+  "nav.catalog": "Catalog",
+  "nav.about": "About Us",
   "catalog.title": "Product Catalog",
   "catalog.show": "Show:",
+  "about.title": "About Us",
+  "about.description": "Welcome to Kruzheva! We are a stylish clothing store in Semey. Our mission is to make fashion accessible and help you look great every day. In our assortment you will find dresses, blouses, skirts and much more. We carefully select each model so you can be confident in quality and style.",
   "footer.contacts": "Contacts",
-  "footer.howtoget": "How to get there"
+  "footer.howtoget": "How to get there",
+  "footer.address": "Baurzhan Momishuly 10, Semey 071400",
+  "footer.maplink": "Show on map",
+  "contact.title": "Contact Us",
+  "contact.name": "Your name",
+  "contact.email": "Your email",
+  "contact.message": "Message",
+  "contact.button": "Send",
+  "contact.thanks": "Thank you for your feedback"
 }
