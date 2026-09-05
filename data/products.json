@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1,
+    "name": "Платье вечернее",
+    "price": 15000,
+    "image": "assets/images/dress1.jpg",
+    "category": "Платья",
+    "sale": true
+  },
+  {
+    "id": 2,
+    "name": "Блузка шёлковая",
+    "price": 8000,
+    "image": "assets/images/blouse1.jpg",
+    "category": "Блузки",
+    "sale": false
+  }
+  
+]
