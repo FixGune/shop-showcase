@@ -5,6 +5,57 @@ let itemsPerPage = 8;
 let currentLang = 'ru';
 let saleProducts = [];
 let carouselIndex = 0;
+let backgroundImages = [];
+let currentBgIndex = 0;
+
+async function loadBackgroundImages() {
+    try {
+        const response = await fetch('data/products.json');
+        const products = await response.json();
+        
+        // Берём первые 5 товаров с фото для фона
+        backgroundImages = products
+            .filter(product => product.image)
+            .slice(0, 5)
+            .map(product => product.image);
+        
+        renderBackgroundCarousel();
+        startBackgroundCarousel();
+    } catch (error) {
+        console.error('Ошибка загрузки фоновых изображений:', error);
+    }
+}
+
+function renderBackgroundCarousel() {
+    const carousel = document.getElementById('background-carousel');
+    if (!carousel || backgroundImages.length === 0) return;
+
+    carousel.innerHTML = backgroundImages.map((img, index) => `
+        <div class="background-image ${index === 0 ? 'active' : ''}" 
+             style="background-image: url('${img}')">
+        </div>
+    `).join('');
+}
+
+function startBackgroundCarousel() {
+    const images = document.querySelectorAll('.background-image');
+    if (images.length === 0) return;
+
+    setInterval(() => {
+        // Убираем active у текущего
+        images[currentBgIndex].classList.remove('active');
+        
+        // Переходим к следующему
+        currentBgIndex = (currentBgIndex + 1) % images.length;
+        
+        // Добавляем active новому
+        images[currentBgIndex].classList.add('active');
+    }, 5000); // 5 секунд
+}
+
+// === Запуск фоновой карусели ===
+loadBackgroundImages();
+
 
 // === Загрузка товаров для карусели (только акционные) ===
 async function loadCarouselProducts() {

@@ -26,3 +26,54 @@
         flex: 0 0 100%; /* 1 карточка на экран */
     }
 }
+
+/* Фоновая карусель */
+#background-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.background-image.active {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    section.relative .absolute.right-0 {
+        display: none; /* Скрыть фото на мобильном */
+    }
+    
+    section.relative .container .w-1\/2 {
+        width: 100% !important; /* Текст на всю ширину */
+    }
+}
+@media (max-width: 768px) {
+    /* На мобильном KRUZHEva меньше */
+    section.relative h2 {
+        font-size: 3rem !important; /* text-5xl */
+    }
+    
+    /* Три колонки в столбик */
+    section.relative .flex.justify-center {
+        flex-direction: column;
+        space-y: 8;
+        space-x: 0;
+    }
+    
+    /* Скрыть фоновую карусель */
+    section.relative .absolute.right-0 {
+        display: none;
+    }
+}
