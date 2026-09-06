@@ -2,8 +2,128 @@
 let products = [];
 let currentPage = 1;
 let itemsPerPage = 8;
-
 let currentLang = 'ru';
+let saleProducts = [];
+let carouselIndex = 0;
+let backgroundImages = [];
+let currentBgIndex = 0;
+
+async function loadBackgroundImages() {
+    try {
+        const response = await fetch('data/products.json');
+        const products = await response.json();
+        
+        // Берём первые 5 товаров с фото для фона
+        backgroundImages = products
+            .filter(product => product.image)
+            .slice(0, 5)
+            .map(product => product.image);
+        
+        renderBackgroundCarousel();
+        startBackgroundCarousel();
+    } catch (error) {
+        console.error('Ошибка загрузки фоновых изображений:', error);
+    }
+}
+
+function renderBackgroundCarousel() {
+    const carousel = document.getElementById('background-carousel');
+    if (!carousel || backgroundImages.length === 0) return;
+
+    carousel.innerHTML = backgroundImages.map((img, index) => `
+        <div class="background-image ${index === 0 ? 'active' : ''}" 
+             style="background-image: url('${img}')">
+        </div>
+    `).join('');
+}
+
+function startBackgroundCarousel() {
+    const images = document.querySelectorAll('.background-image');
+    if (images.length === 0) return;
+
+    setInterval(() => {
+        // Убираем active у текущего
+        images[currentBgIndex].classList.remove('active');
+        
+        // Переходим к следующему
+        currentBgIndex = (currentBgIndex + 1) % images.length;
+        
+        // Добавляем active новому
+        images[currentBgIndex].classList.add('active');
+    }, 5000); // 5 секунд
+}
+
+// === Запуск фоновой карусели ===
+loadBackgroundImages();
+
+
+// === Загрузка товаров для карусели (только акционные) ===
+async function loadCarouselProducts() {
+    try {
+        const response = await fetch('data/products.json');
+        const allProducts = await response.json();
+        
+        // Фильтруем только товары со скидкой
+        saleProducts = allProducts.filter(product => product.sale === true);
+        
+        renderCarousel();
+    } catch (error) {
+        console.error('Ошибка загрузки товаров для карусели:', error);
+    }
+}
+
+// === Отрисовка карусели ===
+function renderCarousel() {
+    const track = document.getElementById('carousel-track');
+    if (!track || saleProducts.length === 0) return;
+
+    track.innerHTML = saleProducts.map(product => `
+        <div class="carousel-card">
+            <img src="${product.image}" alt="${product.name}">
+            <div class="product-info">
+                <h3 class="font-bold text-lg">${product.name}</h3>
+                <p class="text-pink-500 font-bold">${product.price} ₸</p>
+                <span class="bg-red-500 text-white text-xs px-2 py-1 rounded">Акция</span>
+            </div>
+        </div>
+    `).join('');
+
+    updateCarousel();
+}
+
+// === Обновление позиции карусели ===
+function updateCarousel() {
+    const track = document.getElementById('carousel-track');
+    if (!track) return;
+
+    const cardWidth = track.querySelector('.carousel-card').offsetWidth;
+    const offset = -carouselIndex * cardWidth;
+    track.style.transform = `translateX(${offset}px)`;
+}
+
+// === Обработчики кнопок ===
+document.getElementById('carousel-prev')?.addEventListener('click', () => {
+    if (carouselIndex > 0) {
+        carouselIndex--;
+        updateCarousel();
+    }
+});
+
+document.getElementById('carousel-next')?.addEventListener('click', () => {
+    const track = document.getElementById('carousel-track');
+    if (!track) return;
+
+    const cards = track.querySelectorAll('.carousel-card').length;
+    const visibleCards = 4; // Показываем 4 карточки
+
+    if (carouselIndex < cards - visibleCards) {
+        carouselIndex++;
+        updateCarousel();
+    }
+});
+
+// === Запуск карусели ===
+loadCarouselProducts();
 
 // === Загрузка переводов ===
 async function loadTranslations(lang) {
@@ -49,6 +169,68 @@ async function loadProducts() {
         console.error('Ошибка загрузки товаров:', error);
     }
 }
+
+
+// === Загрузка переводов (обновлённая версия) ===
+async function loadTranslations(lang) {
+    try {
+        const response = await fetch(`data/translations/${lang}.json`);
+        const translations = await response.json();
+        
+        // Подстановка текста по data-i18n
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            if (translations[key]) {
+                el.textContent = translations[key];
+            }
+        });
+        
+        // Подстановка placeholder'ов по data-i18n-placeholder
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.dataset.i18nPlaceholder;
+            if (translations[key]) {
+                el.placeholder = translations[key];
+            }
+        });
+    } catch (error) {
+        console.error('Ошибка загрузки переводов:', error);
+    }
+}
+
+
+// === Обработка формы обратной связи ===
+const contactForm = document.getElementById('contact-form');
+const thankYouMessage = document.getElementById('thank-you-message');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Останавливаем стандартную отправку
+        
+        const formData = new FormData(contactForm);
+        
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // Скрываем форму, показываем сообщение
+                contactForm.classList.add('hidden');
+                thankYouMessage.classList.remove('hidden');
+            } else {
+                alert('Ошибка отправки. Попробуйте позже.');
+            }
+        } catch (error) {
+            console.error('Ошибка:', error);
+            alert('Ошибка отправки. Попробуйте позже.');
+        }
+    });
+}
+
 
 // === Отрисовка товаров ===
 function renderProducts() {
