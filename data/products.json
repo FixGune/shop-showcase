@@ -1,0 +1,46 @@
+[
+  {
+    "id": 8301,
+    "name": "Отбеливающая зубная паста с лаймом и мятой «Свежие дыхание»",
+    "price": 400,
+    "salePrice": 219,
+    "discount": 45,
+    "category": "Зубная паста",
+    "tags": [
+      {
+        "text": "Новинка",
+        "color": "green"
+      },
+      {
+        "text": "Суперцена",
+        "color": "red"
+      }
+    ],
+    "image": "assets/images/toothpaste.jpg"
+  },
+  {
+    "id": 8302,
+    "name": "Увлажняющий крем для лица",
+    "price": 3500,
+    "salePrice": 0,
+    "discount": 20,
+    "category": "Уход за лицом",
+    "tags": [
+      {
+        "text": "Новинка",
+        "color": "green"
+      }
+    ],
+    "image": "assets/images/cream.jpg"
+  },
+  {
+    "id": 8303,
+    "name": "Гель для душа",
+    "price": 1800,
+    "salePrice": 0,
+    "discount": 0,
+    "category": "Уход за телом",
+    "tags": [],
+    "image": "assets/images/shower-gel.jpg"
+  }
+]

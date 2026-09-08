@@ -1,8 +1,0 @@
-# Dependencies
-node_modules/
-
-# Data files
-data/products.json
-
-# Local assets
-assets/images/
